@@ -66,13 +66,13 @@ export default function Partners() {
                 });
             }
 
-            // Scale down previous card as new one comes up
+            // Scale down and fade out previous card as new one comes up
             if (i < cards.length - 1) {
                 tl.to(card, {
-                    scale: 0.95,
-                    opacity: 0.5,
-                    filter: "blur(4px)",
-                    ease: "none"
+                    scale: 0.90,
+                    opacity: 0,
+                    filter: "blur(10px)",
+                    ease: "power2.inOut"
                 }, "+=0"); // Align with the start of the next card's animation
             }
         });
@@ -88,11 +88,12 @@ export default function Partners() {
                     className="partner-card absolute top-0 left-0 w-full h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 bg-bg border-t border-primary/20"
                     style={{ zIndex: index }}
                 >
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center h-[calc(100vh-8rem)] pt-16">
+                    <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row gap-8 lg:gap-16 items-center h-[calc(100vh-8rem)] pt-16">
 
-                        <div className="md:col-span-4 font-mono text-xs md:text-sm tracking-widest uppercase border-l-2 border-accent pl-6 self-start md:self-center mt-8 md:mt-0">
+                        {/* Left Column: Title and Domain */}
+                        <div className="w-full lg:w-[250px] font-mono text-xs md:text-sm tracking-widest uppercase border-l-2 border-accent pl-6 self-start lg:self-center shrink-0">
                             <span className="text-text/50 block mb-2">Partner {index + 1}</span>
-                            <h3 className="font-sans font-bold text-xl text-text mb-4">{partner.role}</h3>
+                            <h3 className="font-sans font-bold text-xl text-text mb-4 lg:mb-8">{partner.role}</h3>
                             <a
                                 href={`https://${partner.domain}`}
                                 target="_blank"
@@ -103,20 +104,21 @@ export default function Partners() {
                             </a>
                         </div>
 
-                        <div className="md:col-span-8 flex flex-col md:flex-row items-center gap-8 md:gap-12 pb-8 md:pb-0 h-full justify-center">
-                            <div className="flex-1 order-2 md:order-1 flex flex-col justify-center">
-                                <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-text mb-4 lg:mb-6 leading-tight">{partner.name}</h2>
-                                <p className="font-sans text-lg md:text-xl text-text/80 leading-relaxed font-light">
-                                    {partner.desc}
-                                </p>
-                            </div>
-                            <div className="w-full md:w-[280px] lg:w-[350px] xl:w-[450px] order-1 md:order-2 aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-primary relative flex-shrink-0 bg-white">
-                                <img
-                                    src={partner.image}
-                                    alt={`${partner.name} machinery`}
-                                    className="w-full h-full object-cover mix-blend-multiply opacity-90 contrast-125 saturate-50"
-                                />
-                            </div>
+                        {/* Middle Column: Main Content */}
+                        <div className="flex-1 flex flex-col justify-center">
+                            <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-text mb-4 lg:mb-6 leading-tight max-w-2xl">{partner.name}</h2>
+                            <p className="font-sans text-lg md:text-xl text-text/80 leading-relaxed font-light max-w-2xl">
+                                {partner.desc}
+                            </p>
+                        </div>
+
+                        {/* Right Column: Image */}
+                        <div className="w-[80%] max-w-[400px] lg:w-[350px] xl:w-[450px] aspect-square rounded-[2rem] overflow-hidden border border-primary relative shrink-0 bg-white shadow-xl shadow-black/5">
+                            <img
+                                src={partner.image}
+                                alt={`${partner.name} machinery`}
+                                className="w-full h-full object-cover mix-blend-multiply opacity-90 contrast-125 saturate-50"
+                            />
                         </div>
 
                     </div>
