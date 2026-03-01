@@ -42,89 +42,74 @@ export default function Partners() {
     const containerRef = useRef(null);
 
     useGSAP(() => {
-        const cards = gsap.utils.toArray('.partner-card');
+        const cards = gsap.utils.toArray('.partner-row');
 
-        // ScrollTrigger to pin the container and cross-fade/scale cards
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                end: `+=${cards.length * 100}%`,
-                pin: true,
-                scrub: 1,
-            }
+        cards.forEach((card) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+            });
         });
-
-        cards.forEach((card, i) => {
-            if (i > 0) {
-                tl.fromTo(card, {
-                    yPercent: 100,
-                    scale: 1
-                }, {
-                    yPercent: 0,
-                    ease: "none",
-                });
-            }
-
-            // Scale down and fade out previous card as new one comes up
-            if (i < cards.length - 1) {
-                tl.to(card, {
-                    scale: 0.90,
-                    opacity: 0,
-                    filter: "blur(10px)",
-                    ease: "power2.inOut"
-                }, "+=0"); // Align with the start of the next card's animation
-            }
-        });
-
     }, { scope: containerRef });
 
     return (
-        <section id="partners" ref={containerRef} className="relative w-full h-[100dvh] bg-bg overflow-hidden flex items-center justify-center">
+        <section id="partners" ref={containerRef} className="py-24 md:py-32 px-6 md:px-16 lg:px-24 bg-bg">
+            <div className="max-w-7xl mx-auto flex flex-col gap-24 md:gap-32">
 
-            {partners.map((partner, index) => (
-                <div
-                    key={partner.id}
-                    className="partner-card absolute top-0 left-0 w-full h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 bg-bg border-t border-primary/20"
-                    style={{ zIndex: index }}
-                >
-                    <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row gap-8 lg:gap-16 items-center h-[calc(100vh-8rem)] pt-16">
+                {partners.map((partner, index) => {
+                    const isEven = index % 2 === 1;
 
-                        {/* Left Column: Title and Domain */}
-                        <div className="w-full lg:w-[250px] font-mono text-xs md:text-sm tracking-widest uppercase border-l-2 border-accent pl-6 self-start lg:self-center shrink-0">
-                            <span className="text-text/50 block mb-2">Partner {index + 1}</span>
-                            <h3 className="font-sans font-bold text-xl text-text mb-4 lg:mb-8">{partner.role}</h3>
-                            <a
-                                href={`https://${partner.domain}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline-flex items-center gap-2 text-accent hover:text-text transition-colors"
-                            >
-                                {partner.domain} <ArrowUpRight className="w-4 h-4" />
-                            </a>
+                    return (
+                        <div
+                            key={partner.id}
+                            className={`partner-row flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-24 items-center`}
+                        >
+
+                            {/* Text Content */}
+                            <div className="flex-1 flex flex-col justify-center">
+                                <div className="font-mono text-xs md:text-sm tracking-widest uppercase border-l-2 border-accent pl-6 mb-8">
+                                    <span className="text-text/50 block mb-2">Partner {index + 1}</span>
+                                    <h3 className="font-sans font-bold text-xl text-text">{partner.role}</h3>
+                                </div>
+
+                                <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-text mb-6 leading-tight">{partner.name}</h2>
+
+                                <p className="font-sans text-lg md:text-xl text-text/80 leading-relaxed font-light mb-8 max-w-2xl">
+                                    {partner.desc}
+                                </p>
+
+                                <div>
+                                    <a
+                                        href={`https://${partner.domain}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-2 px-6 py-3 border border-primary/30 rounded-full text-text hover:bg-text hover:text-bg transition-colors font-mono text-sm uppercase tracking-widest"
+                                    >
+                                        Visit {partner.name} <ArrowUpRight className="w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Image */}
+                            <div className="w-full lg:w-[45%] aspect-[4/3] rounded-[2rem] overflow-hidden border border-primary relative shrink-0 bg-white shadow-xl shadow-black/5 group">
+                                <img
+                                    src={partner.image}
+                                    alt={`${partner.name} machinery`}
+                                    className="w-full h-full object-cover mix-blend-multiply opacity-90 contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-1000 ease-out"
+                                />
+                            </div>
+
                         </div>
+                    );
+                })}
 
-                        {/* Middle Column: Main Content */}
-                        <div className="flex-1 flex flex-col justify-center">
-                            <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-text mb-4 lg:mb-6 leading-tight max-w-2xl">{partner.name}</h2>
-                            <p className="font-sans text-lg md:text-xl text-text/80 leading-relaxed font-light max-w-2xl">
-                                {partner.desc}
-                            </p>
-                        </div>
-
-                        {/* Right Column: Image */}
-                        <div className="w-[80%] max-w-[400px] lg:w-[350px] xl:w-[450px] aspect-square rounded-[2rem] overflow-hidden border border-primary relative shrink-0 bg-white shadow-xl shadow-black/5">
-                            <img
-                                src={partner.image}
-                                alt={`${partner.name} machinery`}
-                                className="w-full h-full object-cover mix-blend-multiply opacity-90 contrast-125 saturate-50"
-                            />
-                        </div>
-
-                    </div>
-                </div>
-            ))}
-
+            </div>
         </section>
     );
 }
