@@ -33,10 +33,6 @@ export default function Hero() {
     return (
         <section ref={containerRef} className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center px-6 md:px-16 lg:px-24">
             <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center pb-24" ref={heroTextRef}>
-                <div className="hero-element inline-flex items-center gap-2 px-3 py-1 mb-8 border border-primary/40 rounded-full bg-white/50 backdrop-blur-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    <span className="font-mono text-xs uppercase tracking-widest text-text">System Active</span>
-                </div>
 
                 <h1 className="hero-element font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-text mb-6">
                     Representing <span className="text-accent italic">Italian Technology</span><br />
