@@ -35,8 +35,8 @@ export default function Hero() {
             <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center pb-24" ref={heroTextRef}>
 
                 <h1 className="hero-element font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-text mb-6">
-                    Representing <span className="text-accent italic">Italian Technology</span><br />
-                    in the Coffee Industry
+                    Representing<br />
+                    <span className="text-accent italic">Italian Technology</span> in the Coffee Industry
                 </h1>
 
                 <p className="hero-element font-mono text-xl md:text-2xl text-text/80 max-w-2xl mb-12">

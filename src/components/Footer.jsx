@@ -15,13 +15,9 @@ export default function Footer() {
                 <div className="flex flex-col gap-4">
                     <h3 className="font-mono text-text/50 uppercase tracking-widest text-xs mb-2">Contact</h3>
 
-                    <a href="mailto:Alden@ASPackLLC.com" className="group flex items-center gap-4 text-xl md:text-2xl hover:text-accent transition-colors weightless-hover font-sans">
+                    <a href="mailto:Alden@ASPackLLC.com" className="group flex items-center gap-4 text-lg md:text-xl hover:text-accent transition-colors weightless-hover font-sans">
                         Alden@ASPackLLC.com
-                        <ArrowRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
-                    </a>
-
-                    <a href="tel:917-544-9821" className="text-lg md:text-xl text-text/80 hover:text-accent transition-colors font-sans">
-                        +1 (917) 544-9821
+                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
                     </a>
                 </div>
 

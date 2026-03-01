@@ -29,8 +29,8 @@ export default function Navbar({ onContactClick }) {
 
             {/* Center Links */}
             <div className="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-text/70">
+                <a href="#technology" className="hover:text-accent transition-colors weightless-hover inline-block">Skills</a>
                 <a href="#partners" className="hover:text-accent transition-colors weightless-hover inline-block">Partners</a>
-                <a href="#technology" className="hover:text-accent transition-colors weightless-hover inline-block">Technology</a>
             </div>
 
             {/* Call to Action Right */}
