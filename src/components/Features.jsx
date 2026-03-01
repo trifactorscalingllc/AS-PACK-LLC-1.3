@@ -29,7 +29,7 @@ export default function Features() {
                     Commercial Offering
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4">
 
                     {/* Card 1 */}
                     <div className="feature-card bg-text/5 p-10 md:p-12 flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 border border-text/10 hover:border-accent/30 rounded-lg">
